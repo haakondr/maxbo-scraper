@@ -1,9 +1,9 @@
-name: Cypress Tests
+name: scraper 
 
 on: [push]
 
 jobs:
-  test-deploy:
+  scrape-notify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

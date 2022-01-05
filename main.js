@@ -12,7 +12,7 @@ const findAndWaitForXpath = async (page, xpath) => {
 };
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto("https://www.maxbo.no/bjorkeved-15-kg-ca-40l-p2259774/");
 
