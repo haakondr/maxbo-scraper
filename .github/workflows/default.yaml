@@ -20,4 +20,5 @@ jobs:
         id: scrape-run
 
       - name: notify 
-        run: echo "${{steps.scrape-run.outputs.INSTOCK}}"
+        if: ${{steps.scrape-run.outputs.INSTOCK == 'false'}}
+        run: echo "we are not in stock!!"
