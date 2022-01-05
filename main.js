@@ -33,11 +33,7 @@ const findAndWaitForXpath = async (page, xpath) => {
   const stores = await page.$$eval("[city=Oslo]", (els) =>
     els.map((el) => el.innerHTML)
   );
-  const inStock = stores.filter((s) => s.includes("Ikke på lager"));
-  if (inStock.length > 0) {
-    console.log("::set-output name=INSTOCK::true");
-  } else {
-    console.log("::set-output name=INSTOCK::false");
-  }
+  const inStock = stores.filter((s) => !s.includes("Ikke på lager"));
+  console.log(`::set-output name=INSTOCK::${inStock.length > 0}`);
   await browser.close();
 })();
