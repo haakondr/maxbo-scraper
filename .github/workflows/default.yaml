@@ -25,7 +25,7 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: ${{secrets.MAIL_ADDRESS}}
+          username: ${{secrets.ACCOUNT}}
           password: ${{secrets.MAIL_PASSWORD}}
           from: ${{secrets.MAIL_ADDRESS}}
           to: ${{secrets.RECEPIENT}}
