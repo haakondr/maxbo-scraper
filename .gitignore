@@ -1,0 +1,6 @@
+.snowpack
+build
+node_modules
+
+*.mp4
+.idea
