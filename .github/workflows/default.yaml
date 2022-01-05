@@ -20,3 +20,4 @@ jobs:
 
       - run: echo "${{ env.action_state }}" 
       - run: echo $GITHUB_ENV
+      - run: cat "$GITHUB_ENV"
