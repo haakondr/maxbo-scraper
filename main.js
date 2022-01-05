@@ -37,7 +37,7 @@ const findAndWaitForXpath = async (page, xpath) => {
   if (inStock.length > 0) {
     const outfile = process.env.GITHUB_ENV;
     console.log(`writing output to ${outfile}`);
-    fs.appendFileSync(outfile, `actionState=instock`);
+    fs.appendFileSync(outfile, `action_state=instock`);
     console.log("in stock");
     console.log(inStock);
   } else {
