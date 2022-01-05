@@ -17,3 +17,5 @@ jobs:
 
       - name: run puppeteer
         run: node main.js
+
+      - run: echo "${{ env.action_state }}" 
