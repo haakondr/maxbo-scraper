@@ -19,5 +19,6 @@ jobs:
         run: node main.js
         id: scrape-run
 
-      - name: print output 
-        run: echo "we are in stock? ${{ steps.scrape-run.outputs.INSTOCK}}"
+      - name: notify 
+        if: ${{steps.scrape-run.outputs.INSTOCK == true}}
+        run: echo "we are in stock!!"
