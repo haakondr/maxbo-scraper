@@ -20,5 +20,4 @@ jobs:
         id: scrape-run
 
       - name: notify 
-        if: ${{steps.scrape-run.outputs.INSTOCK == 'true'}}
-        run: echo "we are in stock!!"
+        run: echo "${{steps.scrape-run.outputs.INSTOCK}}"
