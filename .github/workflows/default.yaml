@@ -17,11 +17,7 @@ jobs:
 
       - name: run puppeteer
         run: node main.js
+        id: scrape-run
 
-      - run: echo "${{ env.action_state }}" 
-
-      - name: Set selected color
-        run: echo '::set-output name=SELECTED_COLOR::green'
-        id: random-color-generator
-      - name: Get color
-        run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+      - name: print output 
+        run: echo "we are in stock? ${{ steps.scrape-run.outputs.INSTOCK}}"

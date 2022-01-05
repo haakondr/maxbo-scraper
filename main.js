@@ -33,15 +33,11 @@ const findAndWaitForXpath = async (page, xpath) => {
   const stores = await page.$$eval("[city=Oslo]", (els) =>
     els.map((el) => el.innerHTML)
   );
-  const inStock = stores.filter((s) => !s.includes("Ikke på lager"));
+  const inStock = stores.filter((s) => s.includes("Ikke på lager"));
   if (inStock.length > 0) {
-    const outfile = process.env.GITHUB_ENV;
-    console.log(`writing output to ${outfile}`);
-    fs.appendFileSync(outfile, `action_state=instock`);
-    console.log("in stock");
-    console.log(inStock);
+    console.log("::set-output name=INSTOCK::true");
   } else {
-    console.log("nothing in stock");
+    console.log("::set-output name=INSTOCK::false");
   }
   await browser.close();
 })();
