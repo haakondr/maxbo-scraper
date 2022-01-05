@@ -19,5 +19,9 @@ jobs:
         run: node main.js
 
       - run: echo "${{ env.action_state }}" 
-      - run: echo $GITHUB_ENV
-      - run: cat "$GITHUB_ENV"
+
+      - name: Set selected color
+        run: echo '::set-output name=SELECTED_COLOR::green'
+        id: random-color-generator
+      - name: Get color
+        run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
