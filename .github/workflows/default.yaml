@@ -19,6 +19,17 @@ jobs:
         run: node main.js
         id: scrape-run
 
-      - name: notify 
+      - name: Send email
         if: ${{steps.scrape-run.outputs.INSTOCK == 'false'}}
-        run: echo "we are not in stock!!"
+        uses: devellany/send-mailer@v1.0.2
+        with:
+          host: smtp.google.com
+          account: ${{secrets.ACCOUNT}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: ${{secrets.ACCOUNT}}
+          from: ${{secrets.ACCOUNT}}
+          to: ${{secrets.RECEPIENT}}
+          subject: we are in stock!!
+          body: omg!!
+          # Optional content type (defaults to text/plain)
+          contentType: text/plain
