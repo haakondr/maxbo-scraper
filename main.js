@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const fs = require("fs");
 
 const findAndWaitFor = async (page, selector) => {
   await page.waitForSelector(selector);
@@ -33,7 +32,12 @@ const findAndWaitForXpath = async (page, xpath) => {
   const stores = await page.$$eval("[city=Oslo]", (els) =>
     els.map((el) => el.innerHTML)
   );
-  const inStock = stores.filter((s) => !s.includes("Ikke på lager"));
-  console.log(`::set-output name=INSTOCK::${inStock.length > 0}`);
   await browser.close();
+
+  const inStock = stores.filter((s) => !s.includes("Ikke på lager"));
+  if (inStock) {
+    throw new Error("we are in stock, failing build to trigger notification!");
+  } else {
+    console.log("Not in stock :(");
+  }
 })();

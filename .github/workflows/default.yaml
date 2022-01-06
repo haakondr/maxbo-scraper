@@ -18,19 +18,3 @@ jobs:
       - name: run puppeteer
         run: node main.js
         id: scrape-run
-
-      - name: Send email
-        if: ${{steps.scrape-run.outputs.INSTOCK == 'false'}}
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{secrets.ACCOUNT}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          from: ${{secrets.MAIL_ADDRESS}}
-          to: ${{secrets.RECEPIENT}}
-          secure: true
-          subject: we are in stock!!
-          body: omg!!
-          # Optional content type (defaults to text/plain)
-          contentType: text/plain
