@@ -35,7 +35,7 @@ const findAndWaitForXpath = async (page, xpath) => {
   await browser.close();
 
   const inStock = stores.filter((s) => !s.includes("Ikke på lager"));
-  if (inStock) {
+  if (inStock.length > 0) {
     throw new Error("we are in stock, failing build to trigger notification!");
   } else {
     console.log("Not in stock :(");
