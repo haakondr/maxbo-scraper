@@ -1,6 +1,9 @@
 name: scraper 
 
-on: [push]
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '11,13,15 * * * *'
 
 jobs:
   scrape-notify:
